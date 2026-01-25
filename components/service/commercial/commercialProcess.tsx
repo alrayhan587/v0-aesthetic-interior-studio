@@ -1,53 +1,72 @@
-"use client"
+'use client'
 
-import { useState, useRef } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { MessageCircle, Palette, FileText, Wrench, Handshake, LucideIcon } from "lucide-react"
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 
-interface ProcessStep {
-  number: string
-  title: string
-  description: string
-  icon: LucideIcon
-}
-
-const processSteps: ProcessStep[] = [
+const processSteps = [
   {
-    number: "01",
-    title: "Consultation",
-    description:
-      "We begin by understanding your needs, space, budget, and design preferences through an in-depth discovery session.",
-    icon: MessageCircle,
+    number: '01',
+    title: 'Consultation & Requirement Analysis',
+    description: 'We begin by understanding your business goals, workflow, space usage, budget, and timeline.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+    ),
   },
   {
-    number: "02",
-    title: "Concept & Design",
-    description:
-      "Our designers create thoughtful layouts, curated material selections, and immersive 3D visualizations.",
-    icon: Palette,
+    number: '02',
+    title: 'Space Planning & Concept Design',
+    description: 'Our team develops layout plans and design concepts focused on efficiency, branding, and compliance.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      </svg>
+    ),
   },
   {
-    number: "03",
-    title: "Detailed Planning",
-    description: "We prepare comprehensive drawings, accurate cost estimates, and realistic project timelines.",
-    icon: FileText,
+    number: '03',
+    title: 'Design Finalization & Budget Approval',
+    description: 'Materials, finishes, and technical details are finalized, followed by a transparent project budget.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
   },
   {
-    number: "04",
-    title: "Execution",
-    description:
-      "Our expert team manages every detail—from production and installation to rigorous quality control.",
-    icon: Wrench,
+    number: '04',
+    title: 'Execution & Site Management',
+    description: 'Our project team manages production, installation, and on-site coordination with strict quality control.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
   },
   {
-    number: "05",
-    title: "Handover",
-    description: "Your beautifully finished space is delivered, ready for you to live, work, and thrive in.",
-    icon: Handshake,
+    number: '05',
+    title: 'Quality Check & Handover',
+    description: 'Multiple quality inspections ensure everything meets design, safety, and functional standards before delivery.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    number: '06',
+    title: 'Post-Handover Support',
+    description: 'We remain available for support, maintenance guidance, and future upgrades.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
   },
 ]
 
-function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: number; isLast: boolean }) {
+function TimelineStep({ step, index, isLast }: { step: typeof processSteps[0]; index: number; isLast: boolean }) {
   const stepRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(stepRef, { once: false, margin: "-100px" })
   
@@ -71,7 +90,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
               transition={{ duration: 0.3, delay: 0.4 }}
               className="text-[#a57c00]"
             >
-              <step.icon className="w-6 h-6" strokeWidth={1.5} />
+              {step.icon}
             </motion.div>
           </motion.div>
           {!isLast && (
@@ -154,7 +173,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="text-[#a57c00] group-hover:text-[#c99a00] transition-colors"
               >
-                <step.icon className="w-6 h-6" strokeWidth={1.5} />
+                {step.icon}
               </motion.div>
             </div>
           </motion.div>
@@ -203,7 +222,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
   )
 }
 
-export function ProcessSection() {
+export function CommercialProcess() {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const isHeaderInView = useInView(headerRef, { once: true })
@@ -216,7 +235,7 @@ export function ProcessSection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
 
   return (
-    <section ref={containerRef} className="py-24 lg:py-32 bg-card relative overflow-hidden">
+    <section ref={containerRef} className="py-24 lg:py-32 bg-[#f9f7f4] relative overflow-hidden">
       {/* Background Pattern */}
       <motion.div 
         style={{ y: backgroundY }}
@@ -265,7 +284,7 @@ export function ProcessSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#0d3d3d] mb-6"
           >
-            Our Design
+            Our Commercial Design
             <br />
             <span className="italic text-[#a57c00]">Process</span>
           </motion.h2>
@@ -276,7 +295,7 @@ export function ProcessSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-[#0d3d3d]/60 max-w-2xl mx-auto leading-relaxed text-lg"
           >
-            A structured approach to transforming spaces, from initial concept to final execution.
+            A structured approach to transforming commercial spaces, from consultation to handover.
           </motion.p>
         </div>
 
@@ -304,13 +323,13 @@ export function ProcessSection() {
           viewport={{ once: true }}
           className="text-center mt-20"
         >
-          <p className="text-[#0d3d3d]/60 mb-6">Ready to start your project?</p>
+          <p className="text-[#0d3d3d]/60 mb-6">Ready to transform your commercial space?</p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#0d3d3d] text-white rounded-full hover:bg-[#0d3d3d]/90 transition-colors font-medium"
           >
-            Start Your Journey
+            Schedule a Consultation
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

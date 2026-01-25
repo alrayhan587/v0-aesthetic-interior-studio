@@ -30,8 +30,7 @@ export default function HomePage() {
        <TestimonialsSection />
       
        
-         <AboutSection />
-      <WhyChooseUsSection />
+        
       
    
       

@@ -103,7 +103,7 @@ export function Header() {
                           Commercial Service
                         </Link>
                         <Link
-                          href="/services/architectural-design"
+                          href="/services/architectural"
                           className="block px-4 py-2 text-sm text-black/80 hover:bg-gray-100"
                           onClick={() => setServicesDropdownOpen(false)}
                         >
@@ -184,7 +184,7 @@ export function Header() {
                             Commercial Service
                           </Link>
                           <Link
-                            href="/services/architectural-design"
+                            href="/services/architectural"
                             className="block text-sm text-black/80 hover:text-[#a57c00]"
                             onClick={() => {
                               setMobileMenuOpen(false)

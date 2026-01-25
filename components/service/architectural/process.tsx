@@ -1,53 +1,72 @@
-"use client"
+'use client'
 
-import { useState, useRef } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { MessageCircle, Palette, FileText, Wrench, Handshake, LucideIcon } from "lucide-react"
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 
-interface ProcessStep {
-  number: string
-  title: string
-  description: string
-  icon: LucideIcon
-}
-
-const processSteps: ProcessStep[] = [
+const processSteps = [
   {
-    number: "01",
-    title: "Consultation",
-    description:
-      "We begin by understanding your needs, space, budget, and design preferences through an in-depth discovery session.",
-    icon: MessageCircle,
+    number: '01',
+    title: 'Site Measurement',
+    description: 'Accurate measurement and understanding of existing conditions. We conduct thorough site visits to capture every detail.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+      </svg>
+    ),
   },
   {
-    number: "02",
-    title: "Concept & Design",
-    description:
-      "Our designers create thoughtful layouts, curated material selections, and immersive 3D visualizations.",
-    icon: Palette,
+    number: '02',
+    title: 'Concept Sketch',
+    description: 'Early sketches to define spatial ideas and layout logic. Creative exploration of design possibilities and client vision.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+      </svg>
+    ),
   },
   {
-    number: "03",
-    title: "Detailed Planning",
-    description: "We prepare comprehensive drawings, accurate cost estimates, and realistic project timelines.",
-    icon: FileText,
+    number: '03',
+    title: '2D Layout Development',
+    description: 'Detailed planning of zoning, circulation, and furniture placement. Every space is optimized for function and flow.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      </svg>
+    ),
   },
   {
-    number: "04",
-    title: "Execution",
-    description:
-      "Our expert team manages every detail—from production and installation to rigorous quality control.",
-    icon: Wrench,
+    number: '04',
+    title: '3D Layout Design',
+    description: 'Spatial modeling to test scale, proportion, and functionality. Visualize the space before construction begins.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+      </svg>
+    ),
   },
   {
-    number: "05",
-    title: "Handover",
-    description: "Your beautifully finished space is delivered, ready for you to live, work, and thrive in.",
-    icon: Handshake,
+    number: '05',
+    title: 'Rendering',
+    description: 'Photorealistic visuals to communicate design intent clearly. Experience your space through stunning visualizations.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    number: '06',
+    title: 'Documentation & Presentation',
+    description: 'Complete drawing sets and presentations for execution and approval. Ready for seamless project implementation.',
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
   },
 ]
 
-function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: number; isLast: boolean }) {
+function TimelineStep({ step, index, isLast }: { step: typeof processSteps[0]; index: number; isLast: boolean }) {
   const stepRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(stepRef, { once: false, margin: "-100px" })
   
@@ -71,7 +90,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
               transition={{ duration: 0.3, delay: 0.4 }}
               className="text-[#a57c00]"
             >
-              <step.icon className="w-6 h-6" strokeWidth={1.5} />
+              {step.icon}
             </motion.div>
           </motion.div>
           {!isLast && (
@@ -154,7 +173,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="text-[#a57c00] group-hover:text-[#c99a00] transition-colors"
               >
-                <step.icon className="w-6 h-6" strokeWidth={1.5} />
+                {step.icon}
               </motion.div>
             </div>
           </motion.div>
@@ -203,7 +222,7 @@ function TimelineStep({ step, index, isLast }: { step: ProcessStep; index: numbe
   )
 }
 
-export function ProcessSection() {
+export function Process() {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const isHeaderInView = useInView(headerRef, { once: true })
@@ -216,7 +235,7 @@ export function ProcessSection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
 
   return (
-    <section ref={containerRef} className="py-24 lg:py-32 bg-card relative overflow-hidden">
+    <section ref={containerRef} className="py-24 lg:py-32 bg-[#f9f7f4] relative overflow-hidden">
       {/* Background Pattern */}
       <motion.div 
         style={{ y: backgroundY }}
@@ -265,7 +284,7 @@ export function ProcessSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#0d3d3d] mb-6"
           >
-            Our Design
+            Our Interior Design
             <br />
             <span className="italic text-[#a57c00]">Process</span>
           </motion.h2>
