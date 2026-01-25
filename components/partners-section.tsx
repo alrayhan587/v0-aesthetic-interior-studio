@@ -4,13 +4,13 @@ import { useEffect, useRef } from "react"
 
 const partners = [
   { name: "Bosch", logo: "/bosch-brand-logo-simple.jpg" },
-  { name: "Hettich", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Hafele", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Blum", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Siemens", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Greenlam", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Kohler", logo: "/placeholder.svg?height=60&width=120" },
-  { name: "Asian Paints", logo: "/placeholder.svg?height=60&width=120" },
+  { name: "Hettich", logo: "/hettich-logo-brand.png" },
+  { name: "Hafele", logo: "/hafele-logo-brand.png" },
+  { name: "Blum", logo: "/Blum-logo-brand.webp" },
+  { name: "Siemens", logo: "/siemens.png" },
+  { name: "Greenlam", logo: "/Greenlam-Logo-brand.png" },
+  { name: "Kohler", logo: "/Kohler-logo-brand.jfif" },
+  { name: "Asian Paints", logo: "/asianpaints-logo-brand.webp" },
 ]
 
 export function PartnersSection() {
@@ -52,11 +52,14 @@ export function PartnersSection() {
   }, [])
 
   return (
-    <section className="py-16 lg:py-20 bg-card border-t border-border overflow-hidden">
+    <section className="py-16 lg:py-24 bg-card border-t border-border overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center">
-          <span className="text-sm uppercase tracking-widest text-muted-foreground">Our Brand Partners</span>
-          <p className="mt-2 text-sm text-muted-foreground">
+        <div className="text-center mb-12">
+          <span className="text-sm uppercase tracking-widest text-[#a57c00]">Our Brand Partners</span>
+          <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl text-[#0d3d3d] text-balance">
+            Trusted by leading brands
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
             We work with trusted brands and suppliers to ensure quality, durability, and timeless design.
           </p>
         </div>
@@ -65,14 +68,14 @@ export function PartnersSection() {
       {/* Auto-scrolling logo slider */}
       <div
         ref={scrollRef}
-        className="mt-10 flex gap-12 overflow-hidden whitespace-nowrap"
+        className="flex gap-16 overflow-hidden whitespace-nowrap py-8"
         style={{ scrollBehavior: "auto" }}
       >
         {/* Duplicate logos for seamless infinite scroll */}
         {[...partners, ...partners].map((partner, index) => (
           <div
             key={`${partner.name}-${index}`}
-            className="flex-shrink-0 flex items-center justify-center w-32 h-16 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+            className="flex-shrink-0 flex items-center justify-center w-40 h-20 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
           >
             <img
               src={partner.logo || "/placeholder.svg"}

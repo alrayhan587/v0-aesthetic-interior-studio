@@ -47,13 +47,11 @@ export function HeroSection() {
       {heroSlides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
         >
           <img src={slide.image || "/placeholder.svg"} alt={slide.title} className="w-full h-full object-cover" />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-[#000000]/20" />
         </div>
       ))}
 
@@ -63,9 +61,8 @@ export function HeroSection() {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className={`transition-all duration-700 ${
-                  index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute"
-                }`}
+                className={`transition-all duration-700 ${index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute"
+                  }`}
               >
                 {index === currentSlide && (
                   <>
@@ -80,13 +77,13 @@ export function HeroSection() {
               </div>
             ))}
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-foreground hover:bg-white/90 rounded-none px-8 py-6 text-sm">
+              <Button className="bg-[#0d3d3d] text-white hover:bg-[#1a5a5a] rounded-full px-8 py-6 text-sm">
                 View Our Work
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
-                className="rounded-none px-8 py-6 text-sm border-white text-white hover:bg-white hover:text-foreground bg-transparent"
+                className="rounded-full px-8 py-6 text-sm border-white text-white hover:bg-[#0d3d3d] hover:text-white bg-transparent"
               >
                 Book a Consultation
               </Button>
@@ -98,13 +95,13 @@ export function HeroSection() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#0d3d3d] backdrop-blur-sm transition-colors"
       >
         <ChevronLeft className="h-6 w-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#0d3d3d] backdrop-blur-sm transition-colors"
       >
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
@@ -115,9 +112,8 @@ export function HeroSection() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 transition-all duration-300 ${
-              index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/70"
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide ? "w-8 bg-[#0d3d3d]" : "w-2 bg-white/50 hover:bg-white/70"
+              }`}
           />
         ))}
       </div>

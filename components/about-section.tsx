@@ -1,4 +1,6 @@
 export function AboutSection() {
+
+  
   return (
     <section id="about" className="py-20 lg:py-32 bg-card">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -11,8 +13,8 @@ export function AboutSection() {
             />
           </div>
           <div>
-            <span className="text-sm uppercase tracking-widest text-muted-foreground">About Us</span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-foreground text-balance">
+            <span className="text-sm uppercase tracking-widest text-[#a57c00]">About Us</span>
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-[#0d3d3d] text-balance">
               A design studio built around people, not just spaces.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">

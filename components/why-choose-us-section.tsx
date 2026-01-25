@@ -32,8 +32,8 @@ export function WhyChooseUsSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
-            <span className="text-sm uppercase tracking-widest text-muted-foreground">Why Choose Us</span>
-            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-foreground text-balance">
+            <span className="text-sm uppercase tracking-widest text-[#a57c00]">Why Choose Us</span>
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-[#0d3d3d] text-balance">
               Designed with care. Built with precision.
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
@@ -69,15 +69,15 @@ function ReasonItem({ reason }: { reason: (typeof reasons)[0] }) {
     >
       <div
         className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-          isHovered ? "bg-primary scale-110 rotate-12" : "bg-secondary"
+          isHovered ? "bg-[#a57c00] scale-110 rotate-12" : "bg-[#0d3d3d]/10"
         }`}
       >
         <reason.icon
-          className={`h-5 w-5 transition-all duration-300 ${isHovered ? "text-primary-foreground" : "text-foreground"}`}
+          className={`h-5 w-5 transition-all duration-300 ${isHovered ? "text-white" : "text-[#0d3d3d]"}`}
           strokeWidth={1.5}
         />
       </div>
-      <span className="text-foreground group-hover:text-primary transition-colors">{reason.title}</span>
+      <span className="text-foreground group-hover:text-[#0d3d3d] transition-colors">{reason.title}</span>
     </div>
   )
 }
