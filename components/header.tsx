@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
+import { motion } from "framer-motion"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -44,11 +45,17 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
-            <img
-              src="/logo2.png"
-              alt="Aesthetic Interior Studio"
-              className="h-auto w-28"
-            />
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#a57c00]/20 hover:border-[#a57c00] transition-colors duration-300"
+            >
+              <img
+                src="/images/HeaderLogo.jpg"
+                alt="Aesthetic Interior Studio"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
             {/* <span className="ml-2 font-serif text-xl text-[#0d3d3d]">Aesthetic Interior Studio</span> */}
           </Link>
 
@@ -128,7 +135,7 @@ export function Header() {
           </div>
 
           <div className="hidden lg:block">
-            <Button className="bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-6">
+            <Button className="bg-[#0d3d3d] text-white hover:bg-[#1d4343] rounded-full px-6">
               Book Consultation
             </Button>
           </div>
