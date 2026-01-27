@@ -8,25 +8,25 @@ const designTypes = [
     icon: Building2,
     title: 'Office & Corporate Interiors',
     description: 'Workspaces designed for productivity, collaboration, and brand identity.',
-    image: '/images/design-types/office.jpg',
+    image: '/modern-corporate-office-interior-design.jpg',
   },
   {
     icon: Store,
     title: 'Retail & Showroom Spaces',
     description: 'Commercial environments that enhance customer experience and showcase products.',
-    image: '/images/design-types/retail.jpg',
+    image: '/custom-furniture-design-showroom.jpg',
   },
   {
     icon: Coffee,
     title: 'Hospitality & F&B Interiors',
     description: 'Restaurants, cafes, and hospitality spaces with memorable atmospheres.',
-    image: '/images/design-types/hospitality.jpg',
+    image: '/fine-dining-restaurant-interior-warm-lighting.jpg',
   },
   {
     icon: GraduationCap,
     title: 'Institutional & Educational',
     description: 'Learning environments that inspire and facilitate knowledge exchange.',
-    image: '/images/design-types/institutional.jpg',
+    image: '/modern-interior-design-studio-workspace-with-natur.jpg',
   },
 ]
 

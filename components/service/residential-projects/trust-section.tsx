@@ -36,7 +36,7 @@ export function TrustSection() {
       <div 
         className="absolute -right-32 top-1/3 w-80 h-80 opacity-5 pointer-events-none"
         style={{
-          backgroundImage: 'url(/images/sketch-living-room.png)',
+          backgroundImage: 'url(/interior-design-room-layout-sketch-pencil-drawing.jpg)',
           backgroundSize: '100% 100%',
           backgroundRepeat: 'no-repeat',
           zIndex: 1

@@ -33,7 +33,7 @@ export function CommercialFeaturedProject() {
           >
             <div className="aspect-[4/3] rounded-lg overflow-hidden bg-[#e8e4de] relative">
               <Image
-                src="/images/commercial/living-view-01.jpg"
+                src="/modern-commercial-office-interior.jpg"
                 alt="Featured living room interior design"
                 fill
                 className="object-cover"

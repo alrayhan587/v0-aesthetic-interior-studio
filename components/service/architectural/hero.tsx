@@ -1,74 +1,130 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 
-export function CommercialHero() {
+const heroSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1565183938294-7563f3ff68c5?w=1920&q=80",
+    title: "Designing Spaces That Tell Your Story",
+    subtitle: "Elevate your interior with timeless design and elegant aesthetics.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80",
+    title: "Where Elegance Meets Functionality",
+    subtitle: "Transform your vision into beautiful, livable spaces.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+    title: "Modern Design for Contemporary Living",
+    subtitle: "Create environments that inspire and comfort.",
+  },
+]
+
+export function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const goToSlide = (index: number) => setCurrentSlide(index)
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+
   return (
-    <section className="relative overflow-hidden min-h-screen">
-      {/* Background placeholder - replace with your image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed opacity-20 bg-[#e8e4de] bg-[url('/background/background9.jpg')]"
-        
-      />
-      <div className="relative z-10 mx-auto max-w-4xl px-6 lg:px-8 py-32 md:py-40 flex flex-col items-center justify-center text-center min-h-screen">
-        {/* Accent line */}
-        <div className="mb-8 flex items-center justify-center gap-3">
-          <div className="h-px w-8 bg-[#a57c00]" />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-[#0d3d3d] text-sm uppercase tracking-widest font-medium"
-          >
-            Commercial Interior Design
-          </motion.p>
-          <div className="h-px w-8 bg-[#a57c00]" />
+    <section className="relative h-screen w-full overflow-hidden pt-20">
+      {/* Background Carousel */}
+      {heroSlides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img 
+            src={slide.image || "/placeholder.svg"} 
+            alt={slide.title} 
+            className="w-full h-full object-cover" 
+          />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
+      ))}
 
-        {/* Main Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-7xl font-serif font-light leading-tight mb-6 text-[#0d3d3d]"
-        >
-          Spatial Clarity.
-          <br className="hidden sm:block" />
-          <span className="text-[#a57c00]">Functional Logic.</span>
-        </motion.h1>
+      {/* Content */}
+      <div className="relative z-10 h-full flex items-center justify-center">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8 w-full">
+          <div className="max-w-3xl">
+            {heroSlides.map((slide, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-700 ${
+                  index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+              >
+                {index === currentSlide && (
+                  <>
+                    <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight text-balance">
+                      {slide.title}
+                    </h1>
+                    <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl">
+                      {slide.subtitle}
+                    </p>
+                    <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                      <Link
+                        href="#services"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#a57c00] text-white rounded-full hover:bg-[#c99a00] transition-colors font-medium"
+                      >
+                        Explore Services
+                        <ArrowRight className="h-5 w-5" />
+                      </Link>
+                      <Link
+                        href="#contact"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-[#0d3d3d] transition-colors font-medium"
+                      >
+                        Get Consultation
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-        {/* Sub-text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 text-lg md:text-xl max-w-2xl leading-relaxed font-light text-[#0d3d3d]"
-        >
-          At Aesthetic, we design interiors as architectural systems—focused on planning, proportion, light, and material rather than decoration.
-        </motion.p>
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center bg-white/20 hover:bg-[#a57c00] backdrop-blur-sm transition-colors"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-6 w-6 text-white" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center bg-white/20 hover:bg-[#a57c00] backdrop-blur-sm transition-colors"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-6 w-6 text-white" />
+      </button>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 font-medium text-sm uppercase rounded-full tracking-wider transition-all bg-[#a57c00] text-[#f9f7f4] hover:bg-[#c99a00]"
-          >
-            Book Free Consultation
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 font-medium text-sm uppercase rounded-full tracking-wider transition-all border border-[#0d3d3d] text-[#0d3d3d] hover:bg-[#0d3d3d] hover:text-white"
-          >
-            Request Design Proposal
-          </motion.button>
-        </motion.div>
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "w-8 bg-[#a57c00]" : "w-2.5 bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   )
