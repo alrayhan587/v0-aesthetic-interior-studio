@@ -22,18 +22,7 @@ const services = [
     description: "Breathe new life into existing spaces with our expert renovation services.",
     image: "/home-renovation-before-after-interior.jpg",
   },
-  {
-    icon: Sofa,
-    title: "Furniture & Custom Design",
-    description: "Bespoke furniture and fixtures tailored to your exact specifications.",
-    image: "/custom-furniture-design-showroom.jpg",
-  },
-  {
-    icon: MessageSquare,
-    title: "Consultation",
-    description: "Expert guidance to help you make informed decisions about your space.",
-    image: "/interior-design-consultation-meeting.jpg",
-  },
+  
 ]
 
 export function WhatWeDo() {

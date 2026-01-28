@@ -1,10 +1,10 @@
-import { HeroSection } from "@/components/how-we-work/hero-section"
 import { StagesIntro } from "@/components/how-we-work/stages-intro"
 import { InteractiveProcess } from "@/components/how-we-work/interactive-process"
 import { TeamSection } from "@/components/how-we-work/team-section"
 import { CtaSection } from "@/components/how-we-work/cta-section"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { HowWeWorkHero } from "@/components/how-we-work/hero-section"
 
 export const metadata = {
   title: "How We Work | Aesthetic Interior",
@@ -126,14 +126,12 @@ const stages = [
 
 export default function HowWeWorkPage() {
   return (
-    <main className="min-h-screen bg-white">
-     
-      <HeroSection />
+    <main className="min-h-screen bg-[#faf9f6] overflow-x-hidden">
+      <HowWeWorkHero />
       <StagesIntro />
       <InteractiveProcess stages={stages} />
       <TeamSection />
       <CtaSection />
-     
     </main>
   )
 }

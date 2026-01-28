@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { Portfolio } from "@/components/service/portfolio/portfolio"
+import { Portfolio } from '@/components/service/portfolio/portfolio'
 
 const projects = [
-	{
+    {
 		id: 1,
 		title: "Executive Lounge & Reception",
 		category: "Corporate",
@@ -102,15 +102,16 @@ const projects = [
 		description:
 			"An agile workspace designed to foster creativity, networking, and flexible work styles.",
 	},
+  // ... your architectural projects
 ]
 
-export function CommercialPortfolio() {
-	return (
-		<Portfolio
-			projects={projects}
-			portfolioTitle="Commercial Interior"
-			portfolioSubtitle="Design"
-			portfolioDescription="Explore our collection of meticulously crafted commercial interiors, each telling a unique story of elegance and innovation."
-		/>
-	)
+export function ArchitecturalPortfolio() {
+  return (
+    <Portfolio
+      projects={projects}
+      portfolioTitle="Architectural Interior"
+      portfolioSubtitle="Design"
+      portfolioDescription="Explore our collection of meticulously crafted architectural interiors..."
+    />
+  )
 }

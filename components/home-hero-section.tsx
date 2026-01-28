@@ -22,7 +22,7 @@ const heroSlides = [
   },
 ]
 
-export function HeroSection() {
+export function HomeHeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {

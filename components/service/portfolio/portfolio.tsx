@@ -5,100 +5,25 @@ import Image from "next/image"
 import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from "framer-motion"
 import { MapPin, ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react"
 
-const projects = [
-  {
-    id: 1,
-    title: "Contemporary Living Space",
-    category: "Living Room",
-    location: "Mumbai, India",
-    year: "2024",
-    area: "450 sq ft",
-    image: "/images/commercial/living-view-01.jpg",
-    description: "A harmonious blend of modern aesthetics with comfortable living",
-  },
-  {
-    id: 2,
-    title: "Modern Luxury Kitchen",
-    category: "Kitchen",
-    location: "Delhi, India",
-    year: "2024",
-    area: "180 sq ft",
-    image: "/images/commercial/kitchen-view-02.jpg",
-    description: "Premium kitchen design with state-of-the-art functionality",
-  },
-  {
-    id: 3,
-    title: "Elegant Bedroom Suite",
-    category: "Bedroom",
-    location: "Bangalore, India",
-    year: "2023",
-    area: "350 sq ft",
-    image: "/images/commercial/female-bed-view-03.jpg",
-    description: "Sophisticated bedroom with vanity and study integration",
-  },
-  {
-    id: 4,
-    title: "Minimalist Bedroom Design",
-    category: "Bedroom",
-    location: "Pune, India",
-    year: "2024",
-    area: "280 sq ft",
-    image: "/images/commercial/male-bed-view-03.jpg",
-    description: "Clean lines meet contemporary comfort",
-  },
-  {
-    id: 5,
-    title: "Grand Dining Experience",
-    category: "Dining Room",
-    location: "Chennai, India",
-    year: "2024",
-    area: "320 sq ft",
-    image: "/images/commercial/dining-room-view-02.jpg",
-    description: "Where family gatherings become memorable moments",
-  },
-  {
-    id: 6,
-    title: "Welcoming Entry Foyer",
-    category: "Entry",
-    location: "Hyderabad, India",
-    year: "2023",
-    area: "120 sq ft",
-    image: "/images/commercial/entry.jpg",
-    description: "First impressions with functional elegance",
-  },
-  {
-    id: 7,
-    title: "Modern Kitchen Design",
-    category: "Kitchen",
-    location: "Kolkata, India",
-    year: "2024",
-    area: "200 sq ft",
-    image: "/images/commercial/kitchen-view-03.jpg",
-    description: "Seamless flow between cooking and living spaces",
-  },
-  {
-    id: 8,
-    title: "Classic Bedroom Suite",
-    category: "Bedroom",
-    location: "Ahmedabad, India",
-    year: "2024",
-    area: "400 sq ft",
-    image: "/images/commercial/female-bed-view-02.jpg",
-    description: "Designed for comfort, built for memories",
-  },
-  {
-    id: 9,
-    title: "Executive Living Area",
-    category: "Living Room",
-    location: "Jaipur, India",
-    year: "2023",
-    area: "500 sq ft",
-    image: "/images/commercial/living-view-02.jpg",
-    description: "Sophisticated living for the discerning homeowner",
-  },
-]
+interface Project {
+  id: number
+  title: string
+  category: string
+  location: string
+  year: string
+  area: string
+  image: string
+  description: string
+}
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+interface PortfolioProps {
+  projects: Project[]
+  portfolioTitle: string
+  portfolioSubtitle: string
+  portfolioDescription: string
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(cardRef, { once: false, margin: "-20%" })
 
@@ -225,7 +150,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   )
 }
 
-function HorizontalScrollSection() {
+function HorizontalScrollSection({ projects }: { projects: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -244,7 +169,7 @@ function HorizontalScrollSection() {
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <motion.div
             style={{ x: springX }}
-            className="flex gap-8 pl-[10vw]"
+            className="flex gap-4 md:gap-8 pl-[5vw] md:pl-[10vw]"
           >
             {projects.map((project, idx) => (
               <motion.div
@@ -253,54 +178,51 @@ function HorizontalScrollSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.05 }}
                 viewport={{ once: true }}
-                className="w-[80vw] md:w-[60vw] lg:w-[40vw] flex-shrink-0 group cursor-pointer"
+                className="w-[85vw] sm:w-[75vw] md:w-[60vw] lg:w-[40vw] flex-shrink-0 group cursor-pointer"
                 onClick={() => {
                   setLightboxIndex(idx)
                   setLightboxOpen(true)
                 }}
               >
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 60vw, 40vw"
+                    sizes="(max-width: 640px) 85vw, (max-width: 768px) 75vw, (max-width: 1024px) 60vw, 40vw"
                   />
 
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d3d3d]/90 via-[#0d3d3d]/20 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-500" />
 
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
                     <motion.div
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <span className="inline-block px-3 py-1 bg-[#a57c00] text-white text-xs tracking-widest uppercase font-sans mb-4 rounded-full">
+                      <span className="inline-block px-3 py-1 bg-[#a57c00] text-white text-xs tracking-widest uppercase font-sans mb-3 md:mb-4 rounded-full">
                         {project.category}
                       </span>
-                      <h3 className="font-serif text-2xl lg:text-3xl text-white mb-2 leading-tight">
+                      <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-white mb-2 leading-tight">
                         {project.title}
                       </h3>
-                      <p className="text-white/70 font-sans text-sm mb-4 line-clamp-2">
+                      <p className="text-white/70 font-sans text-xs md:text-sm mb-4 line-clamp-2">
                         {project.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-white/50 font-sans text-sm">
+                        <span className="text-white/50 font-sans text-xs md:text-sm">
                           {project.location}
                         </span>
-                        <div className="w-10 h-10 border border-white/30 flex items-center justify-center group-hover:bg-[#a57c00] group-hover:border-[#a57c00] transition-all duration-300 rounded-full">
-                          <ArrowUpRight className="w-4 h-4 text-white" />
+                        <div className="w-8 md:w-10 h-8 md:h-10 border border-white/30 flex items-center justify-center group-hover:bg-[#a57c00] group-hover:border-[#a57c00] transition-all duration-300 rounded-full">
+                          <ArrowUpRight className="w-3 md:w-4 h-3 md:h-4 text-white" />
                         </div>
                       </div>
                     </motion.div>
                   </div>
 
-                  {/* Number */}
-                  <div className="absolute top-6 left-6">
-                    <span className="font-serif text-6xl text-white/10">
+                  <div className="absolute top-4 md:top-6 left-4 md:left-6">
+                    <span className="font-serif text-4xl md:text-6xl text-white/10">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -379,7 +301,7 @@ function HorizontalScrollSection() {
   )
 }
 
-export function Portfolio() {
+export function Portfolio({ projects, portfolioTitle, portfolioSubtitle, portfolioDescription }: PortfolioProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const isHeaderInView = useInView(headerRef, { once: true })
@@ -404,7 +326,6 @@ export function Portfolio() {
         ref={headerRef}
         className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
       >
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div
             className="absolute inset-0"
@@ -439,10 +360,10 @@ export function Portfolio() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-serif text-5xl md:text-7xl lg:text-8xl text-[#0d3d3d] mt-6 leading-[0.9]"
           >
-            Commercial Interior
+            {portfolioTitle}
             <br />
             <span className="italic font-light text-[#a57c00]">
-              Design
+              {portfolioSubtitle}
             </span>
           </motion.h1>
 
@@ -452,8 +373,7 @@ export function Portfolio() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="font-sans text-[#0d3d3d]/60 text-lg md:text-xl max-w-xl mx-auto mt-8 leading-relaxed"
           >
-            Explore our collection of meticulously crafted commercial interiors,
-            each telling a unique story of elegance and innovation.
+            {portfolioDescription}
           </motion.p>
 
           <motion.div
@@ -478,7 +398,6 @@ export function Portfolio() {
             ))}
           </motion.div>
 
-          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={isHeaderInView ? { opacity: 1 } : {}}
@@ -499,7 +418,7 @@ export function Portfolio() {
       {/* Horizontal Scroll Gallery */}
       <div className="relative">
         <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#faf9f7] to-transparent z-10" />
-        <HorizontalScrollSection />
+        <HorizontalScrollSection projects={projects} />
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#faf9f7] to-transparent z-10" />
       </div>
 

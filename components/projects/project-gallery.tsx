@@ -164,7 +164,7 @@ export function ProjectGallery() {
   const hasMoreProjects = filteredProjects.length > INITIAL_DISPLAY_COUNT
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-[#faf9f6] border-t border-gray-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">

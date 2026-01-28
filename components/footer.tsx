@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MapPin, Phone, Mail, ArrowRight } from "lucide-react"
+import { MapPin, Phone, Mail, ArrowRight, Instagram, Facebook, Linkedin, Youtube } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
@@ -19,10 +19,10 @@ const serviceLinks = [
 ]
 
 const socialLinks = [
-  { name: "Instagram", href: "#", icon: "instagram" },
-  { name: "Facebook", href: "#", icon: "facebook" },
-  { name: "LinkedIn", href: "#", icon: "linkedin" },
-  { name: "YouTube", href: "https://www.youtube.com/@AestheticInteriorofficial", icon: "youtube" },
+  { name: "Instagram", href: "https://instagram.com", icon: Instagram },
+  { name: "Facebook", href: "https://facebook.com", icon: Facebook },
+  { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+  { name: "YouTube", href: "https://www.youtube.com/@AestheticInteriorofficial", icon: Youtube },
 ]
 
 const containerVariants = {
@@ -110,23 +110,26 @@ export function Footer() {
               Transforming spaces into beautiful, functional environments that reflect your unique style and vision.
             </p>
             <div className="mt-6 flex gap-4">
-              {socialLinks.map((link) => (
-                <motion.div
-                  key={link.name}
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <Link
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#a57c00] hover:border-[#a57c00] hover:text-white transition-all duration-300"
-                    title={link.name}
+              {socialLinks.map((link) => {
+                const IconComponent = link.icon
+                return (
+                  <motion.div
+                    key={link.name}
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
                   >
-                    <span className="text-xs font-bold">{link.icon.charAt(0).toUpperCase()}</span>
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/70 hover:bg-[#a57c00] hover:border-[#a57c00] hover:text-white transition-all duration-300"
+                      title={link.name}
+                    >
+                      <IconComponent className="h-5 w-5" />
+                    </Link>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
 

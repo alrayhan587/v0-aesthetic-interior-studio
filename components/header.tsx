@@ -41,7 +41,7 @@ export function Header() {
   }, [lastScrollY])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-gray-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-gray-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"} border-b border-black/10`}>
       <nav className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
@@ -65,22 +65,24 @@ export function Header() {
               if (item.name === "Services") {
                 return (
                   <div key={item.name} className="relative">
-                    <button
-                      onMouseEnter={() => {
-                        if (dropdownTimeout) {
-                          clearTimeout(dropdownTimeout)
-                          setDropdownTimeout(null)
-                        }
-                        setServicesDropdownOpen(true)
-                      }}
-                      onMouseLeave={() => {
-                        const timeout = setTimeout(() => setServicesDropdownOpen(false), 700)
-                        setDropdownTimeout(timeout)
-                      }}
-                      className="text-sm text-black/80 hover:text-[#a57c00] transition-colors flex items-center gap-1"
-                    >
-                      {item.name} <ChevronDown className="h-4 w-4" />
-                    </button>
+                    <Link href={item.href}>
+                      <button
+                        onMouseEnter={() => {
+                          if (dropdownTimeout) {
+                            clearTimeout(dropdownTimeout)
+                            setDropdownTimeout(null)
+                          }
+                          setServicesDropdownOpen(true)
+                        }}
+                        onMouseLeave={() => {
+                          const timeout = setTimeout(() => setServicesDropdownOpen(false), 700)
+                          setDropdownTimeout(timeout)
+                        }}
+                        className="text-sm text-black/80 hover:text-[#a57c00] transition-colors flex items-center gap-1"
+                      >
+                        {item.name} <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </Link>
                     {servicesDropdownOpen && (
                       <div
                         className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md py-2 min-w-[200px]"
@@ -162,12 +164,14 @@ export function Header() {
                 if (item.name === "Services") {
                   return (
                     <div key={item.name}>
-                      <button
-                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        className="text-sm text-black/80 hover:text-[#a57c00] transition-colors flex items-center gap-1 w-full text-left"
-                      >
-                        {item.name} <ChevronDown className="h-4 w-4" />
-                      </button>
+                      <Link href={item.href}>
+                        <button
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          className="text-sm text-black/80 hover:text-[#a57c00] transition-colors flex items-center gap-1 w-full text-left"
+                        >
+                          {item.name} <ChevronDown className="h-4 w-4" />
+                        </button>
+                      </Link>
                       {mobileServicesOpen && (
                         <div className="ml-4 mt-2 space-y-2">
                           <Link
