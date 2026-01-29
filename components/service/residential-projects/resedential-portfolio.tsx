@@ -1,9 +1,6 @@
 'use client'
 
 import { Portfolio } from '@/components/service/portfolio/portfolio'
-import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion'
-import Image from 'next/image'
-import { useRef } from 'react'
 
 const projects = [
 	{
@@ -97,68 +94,6 @@ const projects = [
 		description: 'Sophisticated living for the discerning homeowner',
 	},
 ]
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-	const cardRef = useRef<HTMLDivElement>(null)
-	const isInView = useInView(cardRef, { once: false, margin: '-20%' })
-
-	const { scrollYProgress } = useScroll({
-		target: cardRef,
-		offset: ['start end', 'end start'],
-	})
-
-	const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-	const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
-	const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3])
-	const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.2])
-	const rotate = useTransform(
-		scrollYProgress,
-		[0, 0.5, 1],
-		[index % 2 === 0 ? -3 : 3, 0, index % 2 === 0 ? 3 : -3]
-	)
-
-	const springY = useSpring(y, { stiffness: 100, damping: 30 })
-	const springScale = useSpring(scale, { stiffness: 100, damping: 30 })
-	const springRotate = useSpring(rotate, { stiffness: 100, damping: 30 })
-
-	const isEven = index % 2 === 0
-
-	return (
-		<motion.div
-			ref={cardRef}
-			style={{ opacity, scale: springScale }}
-			className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center py-16 lg:py-24 w-full overflow-hidden`}
-		>
-			{/* Image Container */}
-			<motion.div
-				style={{ y: springY, rotateZ: springRotate }}
-				className="relative w-full lg:w-3/5 aspect-[4/3] overflow-hidden group rounded-lg flex-shrink-0"
-			>
-				<motion.div style={{ scale: imageScale }} className="absolute inset-0">
-					<Image
-						src={project.image || '/placeholder.svg'}
-						alt={project.title}
-						fill
-						className="object-cover"
-						sizes="(max-width: 1024px) 100vw, 60vw"
-					/>
-				</motion.div>
-
-				{/* ...rest of image code... */}
-			</motion.div>
-
-			{/* Content */}
-			<motion.div
-				initial={{ opacity: 0, x: isEven ? 50 : -50 }}
-				animate={isInView ? { opacity: 1, x: 0 } : {}}
-				transition={{ duration: 0.8, delay: 0.2 }}
-				className={`w-full lg:w-2/5 ${isEven ? 'lg:pl-8' : 'lg:pr-8 lg:text-right'} flex-shrink-0 overflow-hidden`}
-			>
-				{/* ...content... */}
-			</motion.div>
-		</motion.div>
-	)
-}
 
 export function ResidentialPortfolio() {
 	return (

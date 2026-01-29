@@ -10,7 +10,7 @@ const projects = [
 		location: "Mumbai, India",
 		year: "2024",
 		area: "1,200 sq ft",
-		image: "/images/commercial/living-view-01.jpg",
+		image: "/images/info14.jpg",
 		description:
 			"A sophisticated client-facing space designed to reflect brand prestige and ensure lasting first impressions.",
 	},
@@ -21,7 +21,7 @@ const projects = [
 		location: "Delhi, India",
 		year: "2024",
 		area: "380 sq ft",
-		image: "/images/commercial/kitchen-view-02.jpg",
+		image: "/images/info15.jpg",
 		description:
 			"A modern, efficient breakroom designed to boost employee morale and encourage collaboration.",
 	},
@@ -32,7 +32,7 @@ const projects = [
 		location: "Bangalore, India",
 		year: "2023",
 		area: "650 sq ft",
-		image: "/images/commercial/female-bed-view-03.jpg",
+		image: "/images/info16.jpg",
 		description:
 			"Luxury hospitality design that balances guest comfort with operational efficiency.",
 	},
@@ -43,7 +43,7 @@ const projects = [
 		location: "Pune, India",
 		year: "2024",
 		area: "280 sq ft",
-		image: "/images/commercial/male-bed-view-03.jpg",
+		image: "/images/info17.jpg",
 		description:
 			"Minimalist executive workspace optimized for focus, privacy, and professional meetings.",
 	},
@@ -54,7 +54,7 @@ const projects = [
 		location: "Chennai, India",
 		year: "2024",
 		area: "520 sq ft",
-		image: "/images/commercial/dining-room-view-02.jpg",
+		image: "/images/info18.jpg",
 		description:
 			"Tech-integrated meeting space designed for seamless presentations and client discussions.",
 	},
@@ -65,7 +65,7 @@ const projects = [
 		location: "Hyderabad, India",
 		year: "2023",
 		area: "320 sq ft",
-		image: "/images/commercial/entry.jpg",
+		image: "/images/info19.jpg",
 		description:
 			"A welcoming entry point that establishes brand identity and guides visitor flow.",
 	},
@@ -76,7 +76,7 @@ const projects = [
 		location: "Kolkata, India",
 		year: "2024",
 		area: "450 sq ft",
-		image: "/images/commercial/kitchen-view-03.jpg",
+		image: "/images/info20.jpg",
 		description:
 			"A vibrant retail space designed to maximize customer engagement and operational workflow.",
 	},
@@ -87,7 +87,7 @@ const projects = [
 		location: "Ahmedabad, India",
 		year: "2024",
 		area: "800 sq ft",
-		image: "/images/commercial/female-bed-view-02.jpg",
+		image: "/images/info21.jpg",
 		description:
 			"Premium spa and wellness environment crafted for relaxation and guest experience.",
 	},
@@ -98,7 +98,7 @@ const projects = [
 		location: "Jaipur, India",
 		year: "2023",
 		area: "1,500 sq ft",
-		image: "/images/commercial/living-view-02.jpg",
+		image: "/images/info22.jpg",
 		description:
 			"An agile workspace designed to foster creativity, networking, and flexible work styles.",
 	},

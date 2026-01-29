@@ -179,18 +179,18 @@ export function Footer() {
                 className="flex items-start gap-3 text-white/70 hover:text-[#a57c00] transition-colors group"
               >
                 <MapPin className="h-5 w-5 text-[#a57c00] mt-0.5 flex-shrink-0" />
-                <span className="text-sm">123 Design Street, Creative City, 10001</span>
+                <span className="text-sm">183, East Senpara, Begum Rokeya Soroni , 3rd floor, Mirpur 10 , Dhaka-1216</span>
               </motion.a>
               <motion.a
-                href="tel:+15551234567"
+                href="tel:+8801329694663"
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-white/70 hover:text-[#a57c00] transition-colors"
               >
                 <Phone className="h-5 w-5 text-[#a57c00] flex-shrink-0" />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <span className="text-sm">+88 0132969 4663</span>
               </motion.a>
               <motion.a
-                href="mailto:hello@aestheticinterior.com"
+                href="mailto:aestheticinterior0029laus@gmail.com"
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-white/70 hover:text-[#a57c00] transition-colors"
               >

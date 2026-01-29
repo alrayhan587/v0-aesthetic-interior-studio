@@ -6,7 +6,7 @@ import { DesignTypes } from '@/components/service/architectural/design-type'
 import { ServiceOverview } from '@/components/service/architectural/service-overview'
 import { FeaturedProject } from '@/components/service/architectural/featured-project'
 import { Portfolio } from '@/components/service/architectural/protfolio'
-import { HeroSection } from '@/components/service/architectural/hero'
+import { ArchitecturalHero,  } from '@/components/service/architectural/hero'
 import { ArchitecturalPortfolio } from '@/components/service/architectural/portfolio'
 
 
@@ -16,7 +16,7 @@ export default function CommercialServicePage() {
     
       
       {/* 1. Hero Section */}
-      <HeroSection />
+  <ArchitecturalHero/>
       
 
       {/* 2. Portfolio Section */}
