@@ -19,9 +19,9 @@ const serviceLinks = [
 ]
 
 const socialLinks = [
-  { name: "Instagram", href: "https://instagram.com", icon: Instagram },
-  { name: "Facebook", href: "https://facebook.com", icon: Facebook },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+  { name: "Instagram", href: "https://www.instagram.com/aesthetic.interior.studio?fbclid=IwY2xjawPv0MdleHRuA2FlbQIxMABicmlkETBaaVdKYmFNbHBmbDhQQzBMc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHopFyPPSVJSo_PcgVNUgOaKxFFHPfnMRc9vhZI-ZzvjMPFDUhBkDr5jYgPyi_aem_fk9gZ3wagobeJ4KN6iKBHQ", icon: Instagram },
+  { name: "Facebook", href: "https://www.facebook.com/aestheticinteriorofficial", icon: Facebook },
+  { name: "Linkedin", href: "https://www.linkedin.com/company/aesthetic-interior-studio", icon: Linkedin },
   { name: "YouTube", href: "https://www.youtube.com/@AestheticInteriorofficial", icon: Youtube },
 ]
 

@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 const heroSlides = [
   {
@@ -24,6 +25,9 @@ const heroSlides = [
 
 export function HomeHeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [showSiteTitle, setShowSiteTitle] = useState(false)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const siteTitleTimeout = useRef<number | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,12 +36,45 @@ export function HomeHeroSection() {
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // show the site title for 5s when the section enters view
+            setShowSiteTitle(true)
+            if (siteTitleTimeout.current) {
+              window.clearTimeout(siteTitleTimeout.current)
+            }
+            siteTitleTimeout.current = window.setTimeout(() => {
+              setShowSiteTitle(false)
+              siteTitleTimeout.current = null
+            }, 5000)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(el)
+    return () => {
+      observer.disconnect()
+      if (siteTitleTimeout.current) {
+        window.clearTimeout(siteTitleTimeout.current)
+        siteTitleTimeout.current = null
+      }
+    }
+  }, [])
+
   const goToSlide = (index: number) => setCurrentSlide(index)
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
 
   return (
-    <section className="relative h-screen w-full overflow-hidden pt-20">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden pt-20">
       {/* Background Carousel */}
       {heroSlides.map((slide, index) => (
         <div
@@ -59,6 +96,19 @@ export function HomeHeroSection() {
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="mx-auto max-w-6xl px-6 lg:px-8 w-full text-center">
           <div className="max-w-3xl mx-auto">
+            {/* Temporary site title that appears when hero comes into view for 5s */}
+            <div className="mb-8 flex items-center justify-center gap-3">
+              {/* <div className="h-px w-8 bg-[#a57c00]" /> */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={showSiteTitle ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6 }}
+                className="text-white text-sm uppercase tracking-widest font-medium"
+              >
+                Aesthetic Interior Studio
+              </motion.p>
+              {/* <div className="h-px w-8 bg-[#a57c00]" /> */}
+            </div>
             {heroSlides.map((slide, index) => (
               <div
                 key={index}

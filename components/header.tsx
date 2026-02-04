@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -16,6 +17,7 @@ const navItems = [
 ]
 
 export function Header() {
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
@@ -221,7 +223,13 @@ export function Header() {
                   )
                 }
               })}
-              <Button className="bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full w-full mt-2">
+              <Button
+                className="bg-[#a57c00] text-white rounded-full w-full mt-2"
+                onClick={() => {
+                  router.push("/contact")
+                  setMobileMenuOpen(false)
+                }}
+              >
                 Book Consultation
               </Button>
             </div>
