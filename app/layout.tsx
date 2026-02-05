@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import WhatsAppButton from "@/components/whatsAppButton"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body className={`font-sans antialiased`} suppressHydrationWarning={true}>
         <Header />
         {children}
+        <WhatsAppButton/>
         <Footer />
       </body>
     </html>

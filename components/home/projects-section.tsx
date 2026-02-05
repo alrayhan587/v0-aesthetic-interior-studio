@@ -3,8 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ProjectFilter } from "./projects/project-filter"
-import { ProjectCard } from "./projects/project-card"
+import { ProjectFilter } from "../projects/project-filter"
+import { ProjectCard } from "../projects/project-card"
 
 const projects = [
   {

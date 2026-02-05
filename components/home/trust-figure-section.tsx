@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const stats = [
   { value: 10, label: "Years of Experience", suffix: "+" },
@@ -56,6 +57,7 @@ function AnimatedCounter({
 export function TrustFiguresSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,7 +130,9 @@ export function TrustFiguresSection() {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <Button className="bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm">
+          <Button className="bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm"
+          onClick={()=> router.push('/projects')}
+          >
             Start Your Project
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>

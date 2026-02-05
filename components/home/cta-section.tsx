@@ -1,8 +1,13 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function CtaSection() {
+  const router = useRouter()
   return (
+
     <section className="py-20 lg:py-32 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -23,7 +28,9 @@ export function CtaSection() {
           <p className="mt-6 text-lg text-white/80">
             Start with a simple conversation and let us guide you through the rest.
           </p>
-          <Button className="mt-10 bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm">
+          <Button 
+          onClick={()=> router.push('/contact')}
+          className="mt-10 bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm">
             Start Your Project
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>

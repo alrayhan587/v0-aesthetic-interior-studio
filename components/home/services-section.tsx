@@ -139,7 +139,7 @@ export function ServicesSection() {
             Looking for a custom design solution?
           </p>
           <Link
-            href="#contact"
+            href="/services"
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#0d3d3d] text-white rounded-full hover:bg-[#1a5a5a] transition-colors font-medium uppercase tracking-wider text-sm"
           >
             Start Your Project

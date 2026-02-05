@@ -133,7 +133,7 @@ export function HomeHeroSection() {
                         <ArrowRight className="h-5 w-5" />
                       </Link>
                       <Link
-                        href="#contact"
+                        href="/contact"
                         className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-[#0d3d3d] transition-colors font-medium"
                       >
                         Get Consultation

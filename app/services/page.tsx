@@ -1,12 +1,12 @@
 import { AboutCTA } from "@/components/about/about-cta";
-import { PartnersSection } from "@/components/partners-section";
-import { ProcessSection } from "@/components/process-section";
-import { ProjectSection } from "@/components/projects-section";
+import { PartnersSection } from "@/components/home/partners-section";
+import { ProcessSection } from "@/components/home/process-section";
+import { ProjectSection } from "@/components/home/projects-section";
 import { CommercialCTA } from "@/components/service/commercial/cta";
 import { ServiceHero } from "@/components/service/service-hero";
-import { ServicesSection } from "@/components/services-section";
-import { TestimonialsSection } from "@/components/testimonials-section";
-import { TrustFiguresSection } from "@/components/trust-figure-section";
+import { ServicesSection } from "@/components/home/services-section";
+import { TestimonialsSection } from "@/components/home/testimonials-section";
+import { TrustFiguresSection } from "@/components/home/trust-figure-section";
 
 
 

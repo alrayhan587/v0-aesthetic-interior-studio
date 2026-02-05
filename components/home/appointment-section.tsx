@@ -1,6 +1,11 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+import {useRouter} from 'next/navigation'
 
 export function AppointmentSection() {
+ const router = useRouter()
+
   return (
     <section className="py-20 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -17,7 +22,9 @@ export function AppointmentSection() {
             <p className="mt-6 text-white/80 leading-relaxed">
               Whether you're planning a new home, a renovation, or a commercial space, we're here to help.
             </p>
-            <Button className="mt-8 bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm">
+            <Button
+            onClick={()=> router.push('/contact')} 
+            className="mt-8 bg-[#a57c00] text-white hover:bg-[#c99a00] rounded-full px-8 py-6 text-sm">
               Book a Consultation
             </Button>
           </div>

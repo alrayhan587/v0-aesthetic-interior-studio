@@ -3,6 +3,8 @@
 import { useState, useRef } from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { MessageCircle, Palette, FileText, Wrench, Handshake, LucideIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
+
 
 interface ProcessStep {
   number: string
@@ -207,6 +209,7 @@ export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const isHeaderInView = useInView(headerRef, { once: true })
+  const router = useRouter()
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -306,6 +309,7 @@ export function ProcessSection() {
         >
           <p className="text-[#0d3d3d]/60 mb-6">Ready to start your project?</p>
           <motion.button
+          onClick={()=> router.push('/how-we-work')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#0d3d3d] text-white rounded-full hover:bg-[#0d3d3d]/90 transition-colors font-medium"
