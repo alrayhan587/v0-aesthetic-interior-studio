@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     "We create calm, beautiful, and functional interiors for modern living. From concept to completion, we design spaces that reflect your lifestyle, taste, and everyday needs.",
   generator: "v0.app",
   icons: {
-    icon: [
+    icon:"/favicon.ico",
+    other: [
       {
         url: "/images/ais-icon-light.png",
         media: "(prefers-color-scheme: light)",
