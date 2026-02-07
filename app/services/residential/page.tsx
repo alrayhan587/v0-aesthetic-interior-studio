@@ -1,20 +1,17 @@
 import { CTASection } from "@/components/service/residential-projects/cta-section";
-import { FeaturedProjectsCarousel } from "@/components/service/residential-projects/featuredprojectcarasoual";
-import {  ResedentialHero } from "@/components/service/residential-projects/resedential-hero";
+import { ResedentialHero } from "@/components/service/residential-projects/resedential-hero";
 import { ResidentialPortfolio } from "@/components/service/residential-projects/resedential-portfolio";
 import { TrustSection } from "@/components/service/residential-projects/trust-section";
+import { m } from "framer-motion";
 
-
-export default function ResedentialServicePage() {
-  return (
-    <div className="bg-[#f9f7f4]">
-      <main className="w-screen">
-        <ResedentialHero />
-        {/* <FeaturedProjectsCarousel /> */}
-        <ResidentialPortfolio />
-        <TrustSection />
-        <CTASection />
-      </main>
-    </div>
-  )
+export default function ResidentialPage() {
+    return(
+        <main className="bg-[#f9f7f4]">
+            <ResedentialHero/>
+            <ResidentialPortfolio/>
+            <TrustSection/>
+          
+            
+        </main>
+    )
 }

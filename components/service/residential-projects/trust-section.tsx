@@ -31,7 +31,7 @@ function AnimatedCounter({ from, to, duration = 2 }: { from: number; to: number;
 
 export function TrustSection() {
   return (
-    <section className="relative py-20 md:py-32 bg-white overflow-visible">
+    <section className="relative py-20 md:py-32 bg-white overflow-x-hidden">
       {/* Sketch background */}
       <div 
         className="absolute -right-32 top-1/3 w-80 h-80 opacity-5 pointer-events-none"
@@ -43,7 +43,7 @@ export function TrustSection() {
         }}
       />
       
-      <div className="mx-auto max-w-6xl px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
