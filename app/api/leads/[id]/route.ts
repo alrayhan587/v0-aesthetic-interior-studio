@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase-client'
+import { supabaseClient } from '@/lib/supabase-client'
 
 // PUT — Update Lead
 export async function PUT(
@@ -8,7 +8,7 @@ export async function PUT(
 ) {
   const body = await req.json()
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('leads')
     .update(body)
     .eq('id', params.id)
@@ -26,7 +26,7 @@ export async function DELETE(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const { error } = await supabase
+  const { error } = await supabaseClient
     .from('leads')
     .delete()
     .eq('id', params.id)
