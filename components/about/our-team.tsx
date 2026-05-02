@@ -9,6 +9,15 @@ const teamMembers = [
     role: "General Manager",
     image: "/user/User1.jpg",
     specialty: "Administration Department",
+    senior: true,
+    social: { linkedin: "#", twitter: "#", email: "#" },
+  },
+  {
+    name: "Arup Ratan Mandal",
+    role: "Assistant General Manager",
+    image: "/user/User4.jpg",
+    specialty: "Administration Department",
+    senior: true,
     social: { linkedin: "#", twitter: "#", email: "#" },
   },
   {
@@ -26,10 +35,24 @@ const teamMembers = [
     social: { linkedin: "#", twitter: "#", email: "#" },
   },
   {
-    name: "Arup Ratan Mandal",
-    role: "Assistant General Manager",
-    image: "/user/User4.jpg",
-    specialty: "Administration Department",
+    name: "Faima Shorna",
+    role: "HR Administration",
+    image: "/user/User5.jpg",
+    specialty: "Human Resources",
+    social: { linkedin: "#", twitter: "#", email: "#" },
+  },
+  {
+    name: "Moriom Ritu",
+    role: "Junior Executive",
+    image: "/user/User6.jpg",
+    specialty: "Client Relationship Management",
+    social: { linkedin: "#", twitter: "#", email: "#" },
+  },
+  {
+    name: "Ovijit Chowdhury",
+    role: "Junior Architect",
+    image: "/user/User7.jpg",
+    specialty: "Architect",
     social: { linkedin: "#", twitter: "#", email: "#" },
   },
 ]
@@ -37,6 +60,8 @@ const teamMembers = [
 export function OurTeam() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const seniorMembers = teamMembers.filter((member) => member.senior)
+  const otherMembers = teamMembers.filter((member) => !member.senior)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,59 +105,116 @@ export function OurTeam() {
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div ref={sectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
-            <div
-              key={member.name}
-              className="team-card opacity-0 group"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {/* Image Container */}
-              <div className="relative rounded-2xl overflow-hidden mb-6 aspect-square">
-                <img
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Overlay with Social Links */}
-                <div
-                  className={`absolute inset-0 bg-[#1a3a2f]/80 flex items-center justify-center gap-3 transition-all duration-500 ${hoveredIndex === index ? "opacity-100" : "opacity-0"
-                    }`}
-                >
-                  <a
-                    href={member.social.linkedin}
-                    className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
-                    aria-label="LinkedIn"
+        <div ref={sectionRef}>
+          {/* Senior Team */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+            {seniorMembers.map((member, index) => (
+              <div
+                key={member.name}
+                className="team-card opacity-0 group"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Image Container */}
+                <div className="relative rounded-2xl overflow-hidden mb-6 aspect-square">
+                  <img
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Overlay with Social Links */}
+                  <div
+                    className={`absolute inset-0 bg-[#1a3a2f]/80 flex items-center justify-center gap-3 transition-all duration-500 ${hoveredIndex === index ? "opacity-100" : "opacity-0"
+                      }`}
                   >
-                    <Linkedin className="w-4 h-4 text-white" />
-                  </a>
-                  <a
-                    href={member.social.twitter}
-                    className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="w-4 h-4 text-white" />
-                  </a>
-                  <a
-                    href={member.social.email}
-                    className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
-                    aria-label="Email"
-                  >
-                    <Mail className="w-4 h-4 text-white" />
-                  </a>
+                    <a
+                      href={member.social.linkedin}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="w-4 h-4 text-white" />
+                    </a>
+                    <a
+                      href={member.social.twitter}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="Twitter"
+                    >
+                      <Twitter className="w-4 h-4 text-white" />
+                    </a>
+                    <a
+                      href={member.social.email}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="Email"
+                    >
+                      <Mail className="w-4 h-4 text-white" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="text-center">
+                  <h3 className="text-lg  text-[#1a3a2f] mb-1">{member.name}</h3>
+                  <p className="text-[#a57c00] text-sm font-medium mb-2">{member.role}</p>
+                  <p className="text-[#6a6a6a] text-sm">{member.specialty}</p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Info */}
-              <div className="text-center">
-                <h3 className="text-lg  text-[#1a3a2f] mb-1">{member.name}</h3>
-                <p className="text-[#a57c00] text-sm font-medium mb-2">{member.role}</p>
-                <p className="text-[#6a6a6a] text-sm">{member.specialty}</p>
+          {/* Team Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {otherMembers.map((member, index) => (
+              <div
+                key={member.name}
+                className="team-card opacity-0 group"
+                onMouseEnter={() => setHoveredIndex(index + seniorMembers.length)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Image Container */}
+                <div className="relative rounded-2xl overflow-hidden mb-6 aspect-square">
+                  <img
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Overlay with Social Links */}
+                  <div
+                    className={`absolute inset-0 bg-[#1a3a2f]/80 flex items-center justify-center gap-3 transition-all duration-500 ${hoveredIndex === index + seniorMembers.length ? "opacity-100" : "opacity-0"
+                      }`}
+                  >
+                    <a
+                      href={member.social.linkedin}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="w-4 h-4 text-white" />
+                    </a>
+                    <a
+                      href={member.social.twitter}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="Twitter"
+                    >
+                      <Twitter className="w-4 h-4 text-white" />
+                    </a>
+                    <a
+                      href={member.social.email}
+                      className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-[#a57c00] transition-colors"
+                      aria-label="Email"
+                    >
+                      <Mail className="w-4 h-4 text-white" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="text-center">
+                  <h3 className="text-lg  text-[#1a3a2f] mb-1">{member.name}</h3>
+                  <p className="text-[#a57c00] text-sm font-medium mb-2">{member.role}</p>
+                  <p className="text-[#6a6a6a] text-sm">{member.specialty}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
