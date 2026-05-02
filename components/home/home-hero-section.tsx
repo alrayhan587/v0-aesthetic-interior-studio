@@ -7,17 +7,22 @@ import { motion } from "framer-motion"
 
 const heroSlides = [
   {
-    image: "/hero/hero-1.jpg",
+    image: "/banner/Banner1.jpg",
     title: "Designing Spaces That Tell Your Story",
     subtitle: "Elevate your interior with timeless design and elegant aesthetics.",
   },
   {
-    image: "/hero/hero-2.jpg",
+    image: "/banner/Banner2.jpg",
     title: "Where Elegance Meets Functionality",
     subtitle: "Transform your vision into beautiful, livable spaces.",
   },
   {
-    image: "/hero/hero-3.jpg",
+    image: "/banner/Banner3.jpg",
+    title: "Modern Design for Contemporary Living",
+    subtitle: "Create environments that inspire and comfort.",
+  },
+  {
+    image: "/banner/Banner4.jpg",
     title: "Modern Design for Contemporary Living",
     subtitle: "Create environments that inspire and comfort.",
   },

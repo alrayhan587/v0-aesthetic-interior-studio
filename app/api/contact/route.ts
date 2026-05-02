@@ -1,34 +1,38 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { cuid } from 'cuid';
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body = await req.json()
+    const body = await req.json();
+    const { name, email, phone, message } = body;
 
-    const { name, email, phone, message } = body
+    console.log('Request body:', body);
 
-    if (!name || !email || !phone || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
+    if (!name && !email && !phone && !message) {
+      return NextResponse.json({ error: 'At least one field (name, email, phone, message) is required' }, { status: 400 });
     }
 
-    const { error } = await supabase
-      .from('contact_leads')
-      .insert([
-        { name, email, phone, message }
-      ])
+    const data: Record<string, any> = {
+      id: Math.floor(Math.random() * 1000000),
+    };
+    if (name) data.name = name;
+    if (email) data.email = email;
+    if (phone) data.phone = phone;
+    if (message) data.message = message;
 
-    if (error) {
-      console.log('SUPABASE ERROR:', error)
-      return NextResponse.json({ error }, { status: 500 })
-    }
+    console.log('Data to create:', data);
 
-    return NextResponse.json({ success: true })
+    const created = await prisma.contact_leads.create({ data });
+    console.log('Created record:', created);
 
-  } catch (err) {
-    console.log('API ERROR:', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    return NextResponse.json({
+      ...created,
+      created_at: created.created_at.toISOString(),
+    }, { status: 201 });
+  } catch (error: any) {
+    console.error('Contact API Error:', error);
+    console.error('Error stack:', error.stack);
+    return NextResponse.json({ error: error?.message || 'Failed to create contact lead' }, { status: 500 });
   }
 }

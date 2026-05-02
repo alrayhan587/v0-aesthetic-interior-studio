@@ -1,5 +1,5 @@
 import { Header } from "@/components/header"
-import { HeroSection, HomeHeroSection } from "@/components/home/home-hero-section"
+import { HomeHeroSection } from "@/components/home/home-hero-section"
 import { AboutSection } from "@/components/home/about-section"
 import { ProcessSection } from "@/components/home/process-section"
 import { ServicesSection } from "@/components/home/services-section"
