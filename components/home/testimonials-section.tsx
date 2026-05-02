@@ -7,85 +7,92 @@ const testimonials = [
   {
     quote:
       "Working with the team was smooth and professional. They understood our needs and delivered exactly what we imagined.",
-    author: "Sarah Rahman",
-    project: "Home Renovation",
-    image: "/p1.jpg",
+    author: "Siam Hossain",
+    project: "Residential Project",
+    image: "/client agreement/Client-agreement1.jpg",
   },
   {
     quote:
       "Our home now feels calm, modern, and beautifully designed. We loved the experience from start to finish.",
-    author: "Michael Ahmed",
-    project: "Apartment Interior",
-    image: "/p2.jpg",
+    author: "Nafiz Islam",
+    project: "Appartment Project",
+    image: "/client agreement/Client-agreement2.jpg",
   },
   {
     quote: "Design and execution were seamless. Highly recommended!",
-    author: "Emma Chowdhury",
-    project: "Office Space",
-    image: "/p3.jpg",
+    author: "Raihan Kabir",
+    project: "Commercial Project",
+    image: "/client agreement/Client-agreement3.jpg",
   },
   {
     quote:
       "They transformed our space into something timeless and elegant. Every detail was thoughtfully planned.",
-    author: "David Hossain",
-    project: "Luxury Living Room",
-    image: "/p4.jpg",
+    author: "Tanvir Hasan",
+    project: "Residential Project",
+    image: "/client agreement/Client-agreement4.jpg",
   },
   {
     quote:
       "From concept to completion, the process was stress-free and transparent. Truly professional work.",
-    author: "Nadia Karim",
-    project: "Full Home Interior",
-    image: "/p5.jpg",
+    author: "Shakib Anwar",
+    project: "Residential Project",
+    image: "/client agreement/Client-agreement5.jpg",
   },
   {
     quote:
       "The design perfectly reflects our lifestyle. The balance between aesthetics and functionality is impressive.",
-    author: "Arif & Sultana Islam",
-    project: "Modern Apartment",
-    image: "/p6.jpg",
+    author: "Mahin Chowdhury",
+    project: "Appartment Project",
+    image: "/client agreement/Client-agreement6.jpg",
   },
   {
     quote:
       "Attention to detail and quality materials made all the difference. The final result exceeded expectations.",
-    author: "Jonathan Rahman",
-    project: "Kitchen Remodeling",
-    image: "/p7.jpg",
+    author: "Sabbir Rahman",
+    project: "Renovation Project",
+    image: "/client agreement/Client-agreement7.jpg",
   },
   {
     quote:
       "Minimal, warm, and elegant—exactly what we wanted. Communication throughout the project was excellent.",
-    author: "Farhana Akter",
-    project: "Bedroom Interior",
-    image: "/p8.jpg",
+    author: "Ishraq Mahmud",
+    project: "Residential Project",
+    image: "/client agreement/Client-agreement8.jpg",
   },
   {
     quote:
       "Their team understands space planning extremely well. Every corner feels purposeful and refined.",
-    author: "Rohan Mahmud",
-    project: "Studio Apartment",
-    image: "/p9.jpg",
+    author: "Arafat Karim",
+    project: "Appartment Project",
+    image: "/client agreement/Client-agreement9.jpg",
   },
   {
     quote:
       "Professional execution with a strong design vision. We felt confident at every stage of the project.",
-    author: "Ayesha Khan",
-    project: "Commercial Interior",
-    image: "/p10.jpg",
+    author: "Mehedi Hasan",
+    project: "Commercial Project",
+    image: "/client agreement/Client-agreement10.jpg",
   },
   {
     quote:
-      "The final outcome feels luxurious yet comfortable. We receive compliments from every visitor.",
-    author: "Tanvir Ahmed",
-    project: "Villa Interior",
-    image: "/p11.jpg",
+      "The outcome was polished and practical, and the process stayed organized from start to finish.",
+    author: "Rakib Uddin",
+    project: "Residential Project",
+    image: "/client agreement/Client-agreement11.jpg",
   },
   {
     quote:
-      "Creative, reliable, and detail-oriented. The space feels both modern and timeless.",
-    author: "Nafisa Rahman",
-    project: "Dining Area Design",
-    image: "/p12.jpg",
+      "Creative ideas, clear communication, and excellent finishing quality made this a great experience.",
+    author: "Fahim Reza",
+    project: "3D Design",
+    image: "/client agreement/Client-agreement12.jpg",
+  },
+  {
+    quote:
+      "The design team delivered exactly what we discussed and the handover quality was excellent.",
+    author: "Shafin Ahmed",
+    project: "Appartment Project",
+    image: "/client agreement/Client-agreement11.jpg",
   },
 ]
 export function TestimonialsSection() {
@@ -153,7 +160,7 @@ export function TestimonialsSection() {
             <img
               src={t.image}
               alt={t.author}
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              className="w-full h-48 object-cover object-top rounded-lg mb-4"
             />
 
             <Quote className="h-6 w-6 text-[#a57c00]/40 mx-auto mb-4" />

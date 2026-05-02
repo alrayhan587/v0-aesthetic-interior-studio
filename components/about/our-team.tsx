@@ -38,7 +38,7 @@ const teamMembers = [
     name: "Faima Shorna",
     role: "HR Administration",
     image: "/user/User5.jpeg",
-    specialty: "Human Resources",
+    specialty: "Human Resources Department",
     social: { linkedin: "#", twitter: "#", email: "#" },
   },
   {
@@ -52,7 +52,7 @@ const teamMembers = [
     name: "Ovijit Chowdhury",
     role: "Junior Architect",
     image: "/user/User7.jpeg",
-    specialty: "Architect",
+    specialty: "Architect Department",
     social: { linkedin: "#", twitter: "#", email: "#" },
   },
 ]

@@ -13,8 +13,8 @@ const videos = [
 	},
 	{
 		id: 2,
-		youtubeId: "EY2WkvPZdtk",
-		title: "Modern Home Transformation",
+		youtubeId: "bFnOafhlsm8",
+		title: "Client Project Walkthrough",
 		duration: "5:20",
 	},
 	{

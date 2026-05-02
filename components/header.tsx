@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { DesktopNavigation, MobileNavigation } from "@/components/navigation"
 
@@ -48,17 +47,11 @@ export function Header() {
 			<nav className="mx-auto max-w-7xl px-6 lg:px-8">
 				<div className="flex h-20 items-center justify-between">
 					<Link href="/" className="flex items-center">
-						<motion.div
-							whileHover={{ scale: 1.1, rotate: 5 }}
-							transition={{ type: "spring", stiffness: 300, damping: 20 }}
-							className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#a57c00]/20 hover:border-[#a57c00] transition-colors duration-300"
-						>
-							<img
-								src="/images/HeaderLogo.jpg"
-								alt="Aesthetic Interior Studio"
-								className="w-full h-full object-cover"
-							/>
-						</motion.div>
+						<img
+							src="/Logo/HeaderLogo.png"
+							alt="Aesthetic Interior Studio"
+							className="h-12 w-auto"
+						/>
 						{/* <span className="ml-2 font-serif text-xl text-[#0d3d3d]">Aesthetic Interior Studio</span> */}
 					</Link>
 
