@@ -9,7 +9,6 @@ const partners = [
   { name: "Blum", logo: "/Blum-logo-brand.webp" },
   { name: "Siemens", logo: "/siemens.png" },
   { name: "Greenlam", logo: "/Greenlam-Logo-brand.png" },
-  { name: "Kohler", logo: "/Kohler-logo-brand.jfif" },
   { name: "Asian Paints", logo: "/asianpaints-logo-brand.webp" },
 ]
 

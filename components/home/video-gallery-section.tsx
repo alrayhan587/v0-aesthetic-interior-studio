@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Play, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -65,12 +65,12 @@ const videos = [
 		title: "Walk-in Closet Ideas",
 		duration: "5:00",
 	},
-  {
-    id: 11,
+	{
+		id: 11,
 		youtubeId: "kXDUVDV6zus",
 		title: "Walk-in Closet Ideas",
 		duration: "5:00",
-  }
+	},
 ]
 
 function getYoutubeThumbnail(youtubeId: string): string {
@@ -82,9 +82,45 @@ export function VideoGallerySection() {
 	const [hoveredVideo, setHoveredVideo] = useState<number | null>(null)
 	const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 	const [titles, setTitles] = useState<Record<string, string>>({})
-	// Featured banner video (id: 3). Other videos will be shown in the grid.
-	const bannerVideo = videos.find((v) => v.id === 3)
-	const otherVideos = videos.filter((v) => v.id !== 3)
+	const [bannerInView, setBannerInView] = useState(false)
+	const [bannerHovered, setBannerHovered] = useState(false)
+	const bannerRef = useRef<HTMLDivElement | null>(null)
+	const bannerIframeRef = useRef<HTMLIFrameElement | null>(null)
+	const bannerVideo = {
+		youtubeId: "D-Py5LNmAJA",
+		title: "Featured Design Story",
+	}
+	const otherVideos = videos.filter((v) => v.youtubeId !== bannerVideo.youtubeId)
+
+	useEffect(() => {
+		const target = bannerRef.current
+		if (!target) return
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setBannerInView(entry.isIntersecting)
+			},
+			{ threshold: 0.6 }
+		)
+
+		observer.observe(target)
+
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		const iframe = bannerIframeRef.current
+		if (!iframe?.contentWindow || !bannerInView) return
+
+		iframe.contentWindow.postMessage(
+			JSON.stringify({
+				event: "command",
+				func: bannerHovered ? "unMute" : "mute",
+				args: [],
+			}),
+			"*"
+		)
+	}, [bannerHovered, bannerInView])
 
 	useEffect(() => {
 		let mounted = true
@@ -156,33 +192,36 @@ export function VideoGallerySection() {
 				</div>
 
 				{/* Featured Banner (full width) */}
-				{bannerVideo && (
-					<div
-						className="mb-8 w-full rounded-xl overflow-hidden relative cursor-pointer"
-						onClick={() => setPlayingVideo(bannerVideo.youtubeId)}
-					>
-						<img
-							src={getYoutubeThumbnail(bannerVideo.youtubeId)}
-							alt={bannerVideo.title}
-							loading="lazy"
-							onError={(e) => {
-								const img = e.currentTarget as HTMLImageElement
-								if (img.src.includes("maxresdefault")) {
-									img.src = `https://img.youtube.com/vi/${bannerVideo.youtubeId}/hqdefault.jpg`
-								} else {
-									img.src = "/placeholder.svg"
-								}
+				<div
+					ref={bannerRef}
+					className="mb-8 w-full rounded-xl overflow-hidden relative"
+					onMouseEnter={() => setBannerHovered(true)}
+					onMouseLeave={() => setBannerHovered(false)}
+				>
+					<div className="w-full h-[48vh] md:h-[60vh] relative overflow-hidden bg-black">
+						<iframe
+							ref={bannerIframeRef}
+							width="100%"
+							height="100%"
+							src={`https://www.youtube-nocookie.com/embed/${bannerVideo.youtubeId}?autoplay=${
+								bannerInView ? 1 : 0
+							}&mute=1&playsinline=1&rel=0&vq=hd720&modestbranding=1&iv_load_policy=3&controls=0&disablekb=1&fs=0&enablejsapi=1`}
+							title={bannerVideo.title}
+							frameBorder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen
+							className="pointer-events-none absolute top-1/2 left-1/2"
+							style={{
+								width: "177.78vh",
+								height: "56.25vw",
+								minWidth: "100%",
+								minHeight: "100%",
+								transform: "translate(-50%, -50%)",
 							}}
-							className="w-full h-[48vh] md:h-[60vh] object-cover"
 						/>
-						<div className="absolute inset-0 bg-gradient-to-t from-[#0d3d3d]/80 to-transparent" />
-						<div className="absolute inset-0 flex items-center justify-center">
-							<div className="w-20 h-20 rounded-full bg-[#a57c00] flex items-center justify-center shadow-lg">
-								<Play className="h-8 w-8 text-white" />
-							</div>
-						</div>
 					</div>
-				)}
+					<div className="absolute inset-0 bg-gradient-to-t from-[#0d3d3d]/35 via-transparent to-transparent pointer-events-none" />
+				</div>
 
 				{/* Other videos: small items with title & duration */}
 				<div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
@@ -280,7 +319,7 @@ export function VideoGallerySection() {
 						<iframe
 							width="100%"
 							height="100%"
-							src={`https://www.youtube.com/embed/${playingVideo}?autoplay=1`}
+							src={`https://www.youtube-nocookie.com/embed/${playingVideo}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3`}
 							title="YouTube video player"
 							frameBorder="0"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
