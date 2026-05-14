@@ -33,6 +33,29 @@ const heroSlides = [
   },
 ]
 
+function useCountUp(target: number, duration = 4500, decimals = 0) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    let start: number | null = null
+    let frame = 0
+
+    const step = (timestamp: number) => {
+      if (start === null) start = timestamp
+      const progress = Math.min((timestamp - start) / duration, 1)
+      setValue(target * progress)
+      if (progress < 1) {
+        frame = window.requestAnimationFrame(step)
+      }
+    }
+
+    frame = window.requestAnimationFrame(step)
+    return () => window.cancelAnimationFrame(frame)
+  }, [target, duration])
+
+  return value.toFixed(decimals)
+}
+
 export function HomeHeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showSiteTitle, setShowSiteTitle] = useState(false)
@@ -82,6 +105,9 @@ export function HomeHeroSection() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
   const activeSlide = heroSlides[currentSlide]
+  const projectsCount = useCountUp(1000)
+  const yearsCount = useCountUp(10)
+  const ratingCount = useCountUp(4.9, 5200, 1)
 
   return (
     <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden pt-20">
@@ -105,10 +131,10 @@ export function HomeHeroSection() {
         </div>
       ))}
 
-      <div className="relative z-10 flex min-h-[calc(100vh-5rem)] items-end lg:items-center">
-        <div className="mx-auto grid w-full max-w-7xl gap-14 px-6 pb-12 pt-24 lg:grid-cols-[1fr_auto] lg:gap-16 lg:px-8 lg:py-20">
-          <div className="max-w-3xl">
-            <div className="mb-7 flex items-center gap-3">
+      <div className="relative z-10 flex min-h-[calc(100vh-5rem)] items-center">
+        <div className="mx-auto w-full max-w-7xl px-5 pb-14 pt-24 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <div className="mb-6 flex items-center justify-center gap-3">
               <div className="h-px w-12 bg-[#c89f2f]/80" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -125,7 +151,7 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="max-w-2xl font-serif text-4xl font-light leading-[1.12] text-white sm:text-5xl lg:text-7xl"
+              className="max-w-3xl font-serif text-[2rem] font-light leading-[1.15] text-white sm:text-5xl lg:text-7xl"
             >
               {activeSlide.title}
             </motion.h1>
@@ -134,7 +160,7 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg lg:text-xl"
+              className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:mt-5 sm:text-lg lg:text-xl"
             >
               {activeSlide.subtitle}
             </motion.p>
@@ -144,77 +170,35 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-              className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
+              className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-4"
             >
               <Link
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#a57c00] px-8 py-4 font-medium text-white transition-all duration-300 hover:bg-[#c99a00]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#a57c00] px-7 py-3.5 font-medium text-white transition-all duration-300 hover:bg-[#c99a00] sm:w-auto sm:px-8 sm:py-4"
               >
                 Explore Services
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/5 px-8 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-[#0d3d3d]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/60 bg-transparent px-7 py-3.5 font-medium text-white transition-all duration-300 hover:bg-white hover:text-[#0d3d3d] sm:w-auto sm:px-8 sm:py-4"
               >
                 Get Consultation
               </Link>
             </motion.div>
 
-            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-5 rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+            <div className="mt-8 grid w-full max-w-2xl grid-cols-1 gap-4 p-0 sm:mt-10 sm:grid-cols-3 sm:gap-5 sm:rounded-2xl sm:border sm:border-white/20 sm:bg-white/10 sm:p-5 sm:backdrop-blur-md">
               <div>
-                <p className="font-serif text-2xl text-white sm:text-3xl">1000+</p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-white/75 sm:text-sm">Projects Delivered</p>
-              </div>
-              <div>
-                <p className="font-serif text-2xl text-white sm:text-3xl">10+</p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-white/75 sm:text-sm">Years of Experience</p>
+                <p className="font-serif text-2xl text-white sm:text-3xl">{projectsCount}+</p>
+                <p className="mt-1 text-[11px] uppercase tracking-wider text-white/75 sm:text-sm">Projects Delivered</p>
               </div>
               <div>
-                <p className="font-serif text-2xl text-white sm:text-3xl">4.9/5</p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-white/75 sm:text-sm">Client Satisfaction</p>
+                <p className="font-serif text-2xl text-white sm:text-3xl">{yearsCount}+</p>
+                <p className="mt-1 text-[11px] uppercase tracking-wider text-white/75 sm:text-sm">Years of Experience</p>
               </div>
-            </div>
-          </div>
-
-          <div className="mx-auto w-full max-w-sm self-end lg:mx-0 lg:self-center">
-            <div className="rounded-3xl border border-white/20 bg-black/25 p-5 backdrop-blur-xl">
-              <div className="mb-4 flex items-center justify-between">
-                <p className="text-xs uppercase tracking-[0.22em] text-white/80">Featured Spaces</p>
-                <p className="text-sm text-white/85">
-                  {String(currentSlide + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
-                </p>
-              </div>
-              <div className="space-y-3">
-                {heroSlides.map((slide, index) => (
-                  <button
-                    key={slide.image}
-                    onClick={() => goToSlide(index)}
-                    className="group w-full text-left"
-                    aria-label={`Go to slide ${index + 1}`}
-                  >
-                    <p
-                      className={`text-sm transition-colors ${
-                        currentSlide === index ? "text-white" : "text-white/60 group-hover:text-white/80"
-                      }`}
-                    >
-                      {slide.title}
-                    </p>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/20">
-                      {currentSlide === index ? (
-                        <motion.div
-                          key={`progress-${currentSlide}`}
-                          className="h-full rounded-full bg-[#c89f2f]"
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 5, ease: "linear" }}
-                        />
-                      ) : (
-                        <div className={`h-full rounded-full ${currentSlide > index ? "w-full bg-white/60" : "w-0"}`} />
-                      )}
-                    </div>
-                  </button>
-                ))}
+              <div>
+                <p className="font-serif text-2xl text-white sm:text-3xl">{ratingCount}/5</p>
+                <p className="mt-1 text-[11px] uppercase tracking-wider text-white/75 sm:text-sm">Client Satisfaction</p>
               </div>
             </div>
           </div>
@@ -223,14 +207,14 @@ export function HomeHeroSection() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/15 backdrop-blur-md transition-colors hover:bg-[#a57c00] lg:left-8"
+        className="absolute left-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/15 backdrop-blur-md transition-colors hover:bg-[#a57c00] lg:left-8 lg:flex"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/15 backdrop-blur-md transition-colors hover:bg-[#a57c00] lg:right-8"
+        className="absolute right-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-white/15 backdrop-blur-md transition-colors hover:bg-[#a57c00] lg:right-8 lg:flex"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6 text-white" />
