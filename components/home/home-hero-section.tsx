@@ -163,7 +163,7 @@ export function HomeHeroSection() {
 
             <div className="mt-10 grid max-w-2xl grid-cols-3 gap-5 rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
               <div>
-                <p className="font-serif text-2xl text-white sm:text-3xl">300+</p>
+                <p className="font-serif text-2xl text-white sm:text-3xl">1000+</p>
                 <p className="mt-1 text-xs uppercase tracking-wider text-white/75 sm:text-sm">Projects Delivered</p>
               </div>
               <div>
