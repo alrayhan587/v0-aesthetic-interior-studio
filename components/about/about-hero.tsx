@@ -10,7 +10,7 @@ export function AboutHero() {
       titleHighlight="Designed with Passion"
       description="We are a design-focused interior studio dedicated to creating functional and inspiring spaces that reflect each client's vision and lifestyle."
       buttonText="Learn More"
-      backgroundImage="/background/realBackground6.jpg"
+      backgroundImage="/banner/Banner12.png"
     />
   )
 }

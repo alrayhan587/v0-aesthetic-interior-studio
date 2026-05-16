@@ -4,30 +4,41 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { Noto_Serif_Bengali } from "next/font/google"
+
+const notoSerifBengali = Noto_Serif_Bengali({
+  subsets: ["bengali"],
+  weight: ["400", "500", "600", "700"],
+})
 
 const heroSlides = [
   {
-    image: "/banner/Banner1.png",
+    image: "/banner/Banner6.png",
+    mobileImage: "/mobileBanner/mobileBanner1.jpeg",
     title: "Designing Spaces That Tell Your Story",
     subtitle: "Elevate your interior with timeless design and elegant aesthetics.",
   },
   {
-    image: "/banner/Banner2.png",
+    image: "/banner/Banner12.png",
+    mobileImage: "/mobileBanner/mobileBanner2.jpeg",
     title: "Where Elegance Meets Functionality",
     subtitle: "Transform your vision into beautiful, livable spaces.",
   },
   {
-    image: "/banner/Banner3.png",
+    image: "/banner/Banner13.png",
+    mobileImage: "/mobileBanner/mobileBanner3.jpeg",
     title: "Modern Design for Contemporary Living",
     subtitle: "Create environments that inspire and comfort.",
   },
   {
     image: "/banner/Banner4.png",
+    mobileImage: "/mobileBanner/mobileBanner4.jpeg",
     title: "Modern Design for Contemporary Living",
     subtitle: "Create environments that inspire and comfort.",
   },
   {
     image: "/banner/Banner5.png",
+    mobileImage: "/mobileBanner/mobileBanner1.jpeg",
     title: "Crafted Interiors with Lasting Impressions",
     subtitle: "Bring beauty, comfort, and purpose into every corner of your space.",
   },
@@ -118,13 +129,16 @@ export function HomeHeroSection() {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          <img
-            src={slide.image || "/placeholder.svg"}
-            alt={slide.title}
-            className={`h-full w-full object-cover transition-transform duration-[7000ms] ${
-              index === currentSlide ? "scale-105" : "scale-100"
-            }`}
-          />
+          <picture>
+            <source media="(max-width: 1023px)" srcSet={slide.mobileImage || slide.image || "/placeholder.svg"} />
+            <img
+              src={slide.image || "/placeholder.svg"}
+              alt={slide.title}
+              className={`h-full w-full object-cover transition-transform duration-[7000ms] ${
+                index === currentSlide ? "scale-105" : "scale-100"
+              }`}
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/35" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(165,124,0,0.25),transparent_42%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.15),transparent_45%)]" />
@@ -134,17 +148,28 @@ export function HomeHeroSection() {
       <div className="relative z-10 flex min-h-[calc(100vh-5rem)] items-center">
         <div className="mx-auto w-full max-w-7xl px-5 pb-14 pt-24 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <div className="mb-6 flex items-center justify-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={showSiteTitle ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6 flex items-center justify-center gap-3"
+            >
               <div className="h-px w-12 bg-[#c89f2f]/80" />
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={showSiteTitle ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6 }}
-                className="text-xs font-medium uppercase tracking-[0.28em] text-white/90 sm:text-sm"
-              >
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-white/90 sm:text-sm">
                 Aesthetic Interior Studio
-              </motion.p>
-            </div>
+              </p>
+              <div className="h-px w-12 bg-[#c89f2f]/80" />
+            </motion.div>
+
+            <motion.p
+              key={`bangla-tag-${currentSlide}`}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: "easeOut" }}
+              className={`${notoSerifBengali.className} mb-4 text-sm font-medium tracking-wide text-[#f2d487] sm:text-base`}
+            >
+              নকশায় আপনার গল্প, ঘরে বাংলার ছোঁয়া
+            </motion.p>
 
             <motion.h1
               key={`title-${currentSlide}`}
